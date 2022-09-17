@@ -1,0 +1,23 @@
+version: '3.10'
+services:
+  web:
+    build: .
+    command: ./docker-entrypoint.sh
+    ports:
+      - 8000:8000
+    # depends_on:
+    #   - redis
+    #   - mysql
+    restart: on-failure
+    volumes:
+      - .:/app
+      - .db_data/db.sqlite3:/db.sqlite3
+
+  stripe-cli:
+    image: stripe/stripe-cli
+    # container_name: stripe-cli
+    command: "listen --api-key sk_test_51LhnkZBuTR45oMzinugmk60Ij1CAkcdI6E1dkoBDryV5ohUekeqYqj5jYuLAYH3lfqXM0M9s2AWXxJrqLO1mDzHK00wsiH1UTV --device-name mac --forward-to localhost:8000/webhooks/stripe/"
+    # env_file:
+    #   - stripe_cli.env
+
+  
