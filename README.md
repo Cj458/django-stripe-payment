@@ -8,7 +8,7 @@
 Используйте менеджер пакетов [pip](https://pip.pypa.io/en/stable/), чтобы установить pipenv.
 
 ```bash
-pipe install pipenv
+pip install pipenv
 ```
 
 клонировать репо
